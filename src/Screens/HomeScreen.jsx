@@ -13,10 +13,8 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
 import propertyData from '../constants/propertyData';
 
-export default function HomeScreen({navigation}) {
-  const detailRedirection = () => {
-    navigation.navigate('detail-screen', propertyData);
-  };
+export default function HomeScreen() {
+  const navigation = useNavigation();
 
   const seeAllHandler = () => {
     console.log('see all clicked');
@@ -39,55 +37,66 @@ export default function HomeScreen({navigation}) {
             Uni-Heaven
           </Text>
         </View>
-        <TouchableOpacity style={styles.cardBody} onPress={detailRedirection}>
-          <Image
-            source={{
-              uri: propertyData.imgUrl,
-            }}
-            style={{
-              width: '100%',
-              height: '50%',
-              borderTopLeftRadius: 8,
-              borderTopRightRadius: 8,
-            }}
-          />
-          <View style={styles.offerCardStrip}>
-            <Text style={{fontWeight: 'bold'}}>Offer upto $50</Text>
-          </View>
-          <View style={styles.propertyNameText}>
-            <Text style={{fontSize: 18, fontWeight: 'bold'}}>
-              {propertyData.propertyName}
-            </Text>
-          </View>
-          <View style={styles.propertyNameText}>
-            <Text numberOfLines={1} ellipsizeMode="tail" style={{fontSize: 15}}>
-              {propertyData.address}
-            </Text>
-          </View>
-          <View style={styles.propertyAddText}>
-            <Text style={{marginTop: 10}}>{propertyData.distance}</Text>
-          </View>
-          <View style={styles.amenitiesView}>
-            <View style={styles.amenitiesPill}>
-              <Text>Sword</Text>
+        {propertyData.map(item => (
+          <TouchableOpacity
+            style={styles.cardBody}
+            onPress={() => navigation.navigate('detail-screen', item)}>
+            <Image
+              source={{
+                uri: item.imgUrl,
+              }}
+              style={{
+                width: '100%',
+                height: '50%',
+                borderTopLeftRadius: 8,
+                borderTopRightRadius: 8,
+              }}
+            />
+            <View style={styles.offerCardStrip}>
+              <Text style={{fontWeight: 'bold'}}>Offer upto $50</Text>
             </View>
-            <TouchableOpacity style={styles.seeAllBtn} onPress={seeAllHandler}>
-              <Text style={{color: 'white'}}>See All</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.priceView}>
-            <View>
-              <Text style={{fontSize: 15, fontWeight: 'bold'}}>
-                Start from $100 / week
+            <View style={styles.propertyNameText}>
+              <Text style={{fontSize: 18, fontWeight: 'bold'}}>
+                {item.propertyName}
               </Text>
             </View>
-            <View>
-              <TouchableOpacity style={styles.seeAllBtn} onPress={enquireClick}>
-                <Text style={{color: 'white'}}>Enquire Now</Text>
+            <View style={styles.propertyNameText}>
+              <Text
+                numberOfLines={1}
+                ellipsizeMode="tail"
+                style={{fontSize: 15}}>
+                {item.address}
+              </Text>
+            </View>
+            <View style={styles.propertyAddText}>
+              <Text style={{marginTop: 10}}>{item.distance}</Text>
+            </View>
+            <View style={styles.amenitiesView}>
+              <View style={styles.amenitiesPill}>
+                <Text>Sword</Text>
+              </View>
+              <TouchableOpacity
+                style={styles.seeAllBtn}
+                onPress={seeAllHandler}>
+                <Text style={{color: 'white'}}>See All</Text>
               </TouchableOpacity>
             </View>
-          </View>
-        </TouchableOpacity>
+            <View style={styles.priceView}>
+              <View>
+                <Text style={{fontSize: 15, fontWeight: 'bold'}}>
+                  Start from $100 / week
+                </Text>
+              </View>
+              <View>
+                <TouchableOpacity
+                  style={styles.seeAllBtn}
+                  onPress={enquireClick}>
+                  <Text style={{color: 'white'}}>Enquire Now</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </TouchableOpacity>
+        ))}
       </ScrollView>
     </SafeAreaView>
   );

@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import React from 'react';
+import Separator from '../Components/Separator';
 
 export default function DetailScreen({route}) {
   const propertyData = route.params;
@@ -93,6 +94,84 @@ export default function DetailScreen({route}) {
               Rooms Available at Property
             </Text>
           </View>
+
+          <View style={styles.roomCardSection}>
+            <View>
+              {propertyData.rooms.map(item => (
+                <View style={styles.roomCard}>
+                  <View style={styles.roomHeader}>
+                    <View style={styles.priceHeaders}>
+                      <Text style={{fontSize: 16}}>{item.name}</Text>
+                      <Text style={{fontSize: 16}}>
+                        Starting from {item.startingPrice}
+                      </Text>
+                    </View>
+                    <View>
+                      <Image
+                        source={{uri: item.imgUrl}}
+                        style={{width: 130, height: 100, borderRadius: 8}}
+                      />
+                    </View>
+                  </View>
+
+                  <View style={styles.amenitiesView}>
+                    {item.amenities.map(item => (
+                      <View style={styles.amenitiesPill}>
+                        <Text>{item}</Text>
+                      </View>
+                    ))}
+                  </View>
+
+                  <View>
+                    {item.rates.map(rate => (
+                      <View style={{marginTop: 10}}>
+                        <Text style={{fontSize: 16, marginTop: 5}}>
+                          Tenancy - {rate.tenancy}
+                        </Text>
+                        <Text style={{fontSize: 16, marginTop: 5}}>
+                          Move In - {rate.moveIn}
+                        </Text>
+                        <View
+                          style={{
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                          }}>
+                          <Text style={{fontSize: 16, marginTop: 5}}>
+                            occupancy - {rate.occupancy}
+                          </Text>
+                          <TouchableOpacity
+                            style={{
+                              backgroundColor: 'black',
+                              paddingVertical: 8,
+                              paddingHorizontal: 15,
+                              borderRadius: 8,
+                            }}>
+                            <Text style={{color: 'white', fontSize: 16}}>
+                              Enquire Now
+                            </Text>
+                          </TouchableOpacity>
+                        </View>
+                        <View style={{alignItems: 'center'}}>
+                          <Separator />
+                        </View>
+                      </View>
+                    ))}
+                    <TouchableOpacity style={{marginTop: 5}}>
+                      <Text
+                        style={{
+                          textAlign: 'center',
+                          fontWeight: 'bold',
+                          fontSize: 16,
+                        }}>
+                        Room Information
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              ))}
+            </View>
+          </View>
         </View>
       </View>
     </ScrollView>
@@ -162,5 +241,27 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     marginBottom: 50,
+  },
+  roomHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  priceHeaders: {
+    gap: 15,
+  },
+  roomCardSection: {
+    marginTop: 15,
+  },
+  amenitiesView: {
+    flexDirection: 'row',
+    gap: 10,
+  },
+  roomCard: {
+    borderWidth: 1,
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+    marginTop: 20,
+    borderRadius: 8,
   },
 });
