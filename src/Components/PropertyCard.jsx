@@ -46,6 +46,8 @@ export default function PropertyCard() {
 const styles = StyleSheet.create({
   cardContainer: {
     height: '100%',
+    borderWidth: 1,
+    borderColor: 'black',
   },
   cardOfferBody: {
     backgroundColor: '#B2C6D5',
