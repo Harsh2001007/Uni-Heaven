@@ -8,10 +8,9 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import React from 'react';
-import PropertyCard from '../Components/PropertyCard';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
-import propertyData from '../constants/propertyData';
+import propertyData from '../../constants/propertyData';
 
 export default function HomeScreen() {
   const navigation = useNavigation();
