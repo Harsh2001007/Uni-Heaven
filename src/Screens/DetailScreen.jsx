@@ -229,6 +229,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingVertical: 5,
     paddingHorizontal: 10,
+    marginTop: 10,
   },
   amenitiesHolder: {
     flexDirection: 'row',
