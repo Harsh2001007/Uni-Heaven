@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import 'react-native-gesture-handler';
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
@@ -17,15 +18,34 @@ export default function AllScreenHolder() {
   const Stack = createNativeStackNavigator();
   const BottomTab = createBottomTabNavigator();
 
+  // eslint-disable-next-line react/no-unstable-nested-components
   function BottomBar() {
     const navigation = useNavigation();
 
     return (
       <BottomTab.Navigator screenOptions={{headerShown: false}}>
-        <BottomTab.Screen name="home-screen" component={HomeScreen} />
-        <BottomTab.Screen name="explore-screen" component={ExploreScreen} />
-        <BottomTab.Screen name="contactus-screen" component={ContactusScreen} />
-        <BottomTab.Screen name="me-screen" component={MeScreen} />
+        <BottomTab.Screen
+          name="home-screen"
+          component={HomeScreen}
+          options={{tabBarLabel: 'Home'}}
+        />
+        <BottomTab.Screen
+          name="explore-screen"
+          component={ExploreScreen}
+          options={{tabBarLabel: 'Explore'}}
+        />
+        <BottomTab.Screen
+          name="contactus-screen"
+          component={ContactusScreen}
+          options={{
+            tabBarLabel: 'Support',
+          }}
+        />
+        <BottomTab.Screen
+          name="me-screen"
+          component={MeScreen}
+          options={{tabBarLabel: 'You'}}
+        />
       </BottomTab.Navigator>
     );
   }
@@ -34,7 +54,6 @@ export default function AllScreenHolder() {
       <Stack.Navigator screenOptions={{headerShown: false}}>
         {/* <Stack.Screen component={LoginScreen} name="login-screen" /> */}
         {/* <Stack.Screen component={SignupScreen} name="signup-screen" /> */}
-        {/* <Stack.Screen component={HomeScreen} name="home-screen" /> */}
         <Stack.Screen component={BottomBar} name="bottom-bar" />
         <Stack.Screen component={ListingScreen} name="listing-screen" />
         <Stack.Screen component={DetailScreen} name="detail-screen" />
