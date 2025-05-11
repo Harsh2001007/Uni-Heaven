@@ -1,5 +1,6 @@
 const propertyData = [
   {
+    id: 1,
     propertyName: 'Otaka Exchange Students',
     address:
       '742 Evergreen Terrace, Near Krusty Burger, Springfield, State of Confusion, ZIP 12345, USA (Home of The Simpsons)',
@@ -63,6 +64,7 @@ const propertyData = [
   },
 
   {
+    id: 2,
     propertyName: 'Lowkey Plaza Dorms',
     address: '25 Thunderbolt Street, Pallet Town, Kanto Region, Japan',
     distance: '3.4 miles from Pokemon Academy',
@@ -103,6 +105,7 @@ const propertyData = [
     ],
   },
   {
+    id: 3,
     propertyName: 'ToonTown Residence Hub',
     address: '1 Acme Lane, Looneyburg, Warner State, USA',
     distance: '2.5 miles from Cartoon Central Station',
@@ -162,6 +165,7 @@ const propertyData = [
     ],
   },
   {
+    id: 4,
     propertyName: 'Lightning Peaks Place',
     address: '22 Volt Road, Thunderclap City, Kanto Isles',
     distance: '0.7 miles from PokeTech Institute',
@@ -198,6 +202,7 @@ const propertyData = [
     ],
   },
   {
+    id: 5,
     propertyName: 'Wacky Wizard Wards',
     address: '13 Broomstick Blvd, Hocus Pocus Hill, Spellshire',
     distance: '0.4 miles from Wizardry University',
@@ -233,6 +238,7 @@ const propertyData = [
     ],
   },
   {
+    id: 6,
     propertyName: 'Dragon’s Den Dorms',
     address: '99 Emberstone Alley, Dragonia Valley, Mystic Realm',
     distance: '1.2 miles from Sorcery Academy',

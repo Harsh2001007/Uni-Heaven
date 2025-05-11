@@ -6,26 +6,39 @@ import {
   ScrollView,
   Image,
   TouchableOpacity,
+  Linking,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
 import propertyData from '../../constants/propertyData';
 
 export default function HomeScreen() {
+  const [enquiryStatus, setEnquiryStatus] = useState({});
+
   const navigation = useNavigation();
 
   const seeAllHandler = () => {
     console.log('see all clicked');
   };
 
-  const enquireClick = () => {
-    console.log('enquire clicked');
+  const enquireClick = id => {
+    setEnquiryStatus(prev => ({...prev, [id]: 'Enquiring ...'}));
+
+    setTimeout(() => {
+      setEnquiryStatus(prev => ({...prev, [id]: 'Enquired ✅'}));
+    }, 2000);
+
+    console.log('enquire clicked', id);
   };
   return (
     <SafeAreaView>
       <ScrollView contentContainerStyle={styles.scrollviewStyles}>
-        <View style={styles.header}>
+        <TouchableOpacity
+          style={styles.header}
+          onPress={() => {
+            Linking.openURL('https://www.universityliving.com/');
+          }}>
           <Text
             style={{
               color: 'white',
@@ -35,7 +48,7 @@ export default function HomeScreen() {
             }}>
             Uni-Heaven
           </Text>
-        </View>
+        </TouchableOpacity>
         {propertyData.map(item => (
           <TouchableOpacity
             style={styles.cardBody}
@@ -71,9 +84,18 @@ export default function HomeScreen() {
               <Text style={{marginTop: 10}}>{item.distance}</Text>
             </View>
             <View style={styles.amenitiesView}>
-              <View style={styles.amenitiesPill}>
-                <Text>Sword</Text>
+              <View style={{flexDirection: 'row', gap: 10}}>
+                <View style={styles.amenitiesPill}>
+                  <Text>Bike</Text>
+                </View>
+                <View style={styles.amenitiesPill}>
+                  <Text>Sofa</Text>
+                </View>
+                <View style={styles.amenitiesPill}>
+                  <Text>Bed</Text>
+                </View>
               </View>
+
               <TouchableOpacity
                 style={styles.seeAllBtn}
                 onPress={seeAllHandler}>
@@ -89,8 +111,10 @@ export default function HomeScreen() {
               <View>
                 <TouchableOpacity
                   style={styles.seeAllBtn}
-                  onPress={enquireClick}>
-                  <Text style={{color: 'white'}}>Enquire Now</Text>
+                  onPress={() => enquireClick(item.id)}>
+                  <Text style={{color: 'white'}}>
+                    {enquiryStatus[item.id] || 'Enquire Now'}
+                  </Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -112,9 +136,9 @@ const styles = StyleSheet.create({
   },
   cardBody: {
     height: 450,
-    borderWidth: 1,
-    marginTop: 10,
+    marginTop: 20,
     borderRadius: 8,
+    borderWidth: 1,
   },
   offerCardStrip: {
     backgroundColor: '#94B4C1',
@@ -131,7 +155,7 @@ const styles = StyleSheet.create({
   },
   amenitiesView: {
     flexDirection: 'row',
-    gap: 10,
+    gap: 5,
     marginTop: 20,
     justifyContent: 'space-between',
     paddingHorizontal: 5,
