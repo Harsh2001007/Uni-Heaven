@@ -251,7 +251,7 @@ const propertyData = [
     bills: ['magic water', 'electricity', 'wifi'],
     rooms: [
       {
-        name: 'Flameproof Studio',
+        name: 'Flameproof Studios',
         startingPrice: '$310 to $480 / week',
         imgUrl:
           'https://i.pinimg.com/564x/21/a8/5c/21a85cf6a362aeda600f07ce7e41f939.jpg',
